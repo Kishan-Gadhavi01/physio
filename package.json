@@ -3,13 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "api/index.cjs",
+  "main": "api/index.js",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node api/index.cjs"
+    "start": "node api/index.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
