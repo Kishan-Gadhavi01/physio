@@ -50,7 +50,7 @@ app.get('/api/recent-analysis', async (req, res) => {
     try {
         const db = await connectToDb();
         
-        // Filter: Fetch only documents that have the 'totalChunks' field defined (i.e., the session headers).
+        // Filter: Fetch only documents that have the 'totalChunks' field defined.
         const filter = { totalChunks: { $exists: true } };
 
         const angles = await db.collection('angles')
@@ -78,7 +78,6 @@ app.get('/api/recent-analysis', async (req, res) => {
 
 // --- 2. Fetch Data Chunks Endpoint ---
 app.get('/api/data-chunks', async (req, res) => {
-    // SessionId is the _id from the metadata document selected by the user
     const { session: sessionId, collection: collectionName } = req.query;
     
     if (!sessionId || !collectionName) {
@@ -118,7 +117,7 @@ app.get('/api/data-chunks', async (req, res) => {
 
 // --- Handle root route (Serves the frontend bundle) ---
 app.get('/', (req, res) => {
-    // Uses standard __dirname and path to find index.html in the root directory
+    // Correct pathing for a Serverless Function nested inside api/
     const staticPath = path.join(__dirname, '..', '..');
     res.sendFile(path.join(staticPath, 'index.html'));
 });
