@@ -1,33 +1,29 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Plot from 'react-plotly.js';
 
-// --- ABSOLUTE URL DEFINITION ---
-const LOCAL_API_HOST = 'http://localhost:3000'; 
-
 // API endpoints
-const INTERNAL_API_URL = LOCAL_API_HOST + '/api/recent-analysis';
-const CHUNK_API_URL = (sessionId, collection) => LOCAL_API_HOST + `/api/data-chunks?session=${sessionId}&collection=${collection}`; 
-const ANALYSIS_API_URL = "http://3.232.209.122/analyze-session/";
+// FIX: Revert to standard relative paths. Vite's proxy must handle routing /api to :3000.
+const INTERNAL_API_URL = '/api/recent-analysis';
+const CHUNK_API_URL = (sessionId, collection) => `/api/data-chunks?session=${sessionId}&collection=${collection}`; 
+const ANALYSIS_API_URL = "http://3.232.209.122/analyze-session/"; // External analyzer URL remains absolute
 
 // --- NEW FUNCTION: Fetch and reassemble data chunks ---
 const fetchAndReassembleChunks = async (sessionId, collectionName) => {
     const url = CHUNK_API_URL(sessionId, collectionName);
     
-    // NOTE: This fetch call now uses the absolute URL defined above
     const response = await fetch(url);
     
     if (!response.ok) {
+        // If 404, 500, etc., throw error with status code
         throw new Error(`Failed to fetch data chunks. Status: ${response.status}`);
     }
     const chunks = await response.json();
     
-    // Check if the server returned an error or if the chunks array is empty
     if (!Array.isArray(chunks) || chunks.length === 0) {
         throw new Error("No data chunks found for this session ID.");
     }
 
     // Sort chunks by index and join the data string
-    // The 'data' property holds the raw text field content (angle_data_text or vicon_data_text)
     const reassembledText = chunks
         .sort((a, b) => a.index - b.index)
         .map(chunk => chunk.data)
@@ -37,7 +33,7 @@ const fetchAndReassembleChunks = async (sessionId, collectionName) => {
 };
 
 
-// Helper function to safely parse Vicon/Pose data (Restored)
+// Helper function to safely parse Vicon/Pose data (Remains unchanged)
 const parseViconData = (text) => {
     const lines = text.trim().split('\n');
     if (lines.length === 0 || lines[0].trim() === "") throw new Error("File/Data is empty.");
@@ -87,7 +83,7 @@ function CombinedAnalysis() {
     useEffect(() => {
         const fetchRecentData = async () => {
             try {
-                // Fetch header/metadata documents only using the absolute URL
+                // Fetch header/metadata documents only using the relative URL
                 const response = await fetch(INTERNAL_API_URL);
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({ error: `HTTP status ${response.status}` }));
@@ -98,7 +94,8 @@ function CombinedAnalysis() {
                 setRecentData(data);
             } catch (err) {
                 console.error("Failed to fetch recent data:", err);
-                setDataLoadingError(`Failed to load data: ${err.message}. Ensure backend is running on ${LOCAL_API_HOST}.`);
+                // Removed LOCAL_API_HOST reference from error message
+                setDataLoadingError(`Failed to load data: ${err.message}. Ensure backend is running.`); 
             }
         };
         fetchRecentData();
@@ -347,7 +344,7 @@ function CombinedAnalysis() {
                             <div className="summary-table-container" style={{ paddingTop: '10px', overflowY: 'auto' }}>
                                 <table style={{width: '90%', margin: '0 auto', borderCollapse: 'collapse'}}>
                                     <tbody>
-                                        <tr style={{borderBottom: '1px solid var(--border-color)'}}>
+                                        <tr style={{borderBottom: '1px var(--border-color)'}}>
                                             <td style={{padding: '4px', fontWeight: 'bold'}}>File</td>
                                             <td style={{padding: '4px', textAlign: 'right'}}>{analysisResult.fileName}</td>
                                         </tr>
