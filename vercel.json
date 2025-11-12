@@ -1,10 +1,5 @@
 {
-  "functions": {
-    "api/index.cjs": {
-      "runtime": "nodejs20.x",
-      "memory": 1024
-    }
-  },
+  
   "routes": [
     {
       "src": "/api/(.*)",
