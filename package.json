@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run backend\" \"vite --host\"",
+    "dev": "concurrently \"npm run backend-simple\" \"vite --host\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "backend": "node backend/api.js"
+    "backend-simple": "node api/index.js",
+    "start": "node api/index.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
@@ -18,7 +19,6 @@
     "express": "^5.1.0",
     "leva": "^0.10.0",
     "mongodb": "^7.0.0",
-    "nodemon": "^3.1.11",
     "plotly.js": "^3.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
