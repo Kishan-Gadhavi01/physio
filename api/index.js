@@ -115,12 +115,6 @@ app.get('/data-chunks', async (req, res) => {
 });
 
 
-// --- Handle root route (Serves the frontend bundle) ---
-app.get('/', (req, res) => {
-    // Correct pathing for a Serverless Function nested inside api/
-    const staticPath = path.join(__dirname, '..', '..');
-    res.sendFile(path.join(staticPath, 'index.html'));
-});
 
 
 // VERCEL REQUIRED EXPORT
