@@ -1,47 +1,34 @@
-// --- Local Development Backend (ES Module Syntax) ---
+// --- Vercel Production Deployment File (CommonJS format) ---
+// This file MUST use require() and module.exports for Vercel compatibility.
+// MONGODB_URI is pulled from Vercel Environment Variables.
 
-import 'dotenv/config'; 
-import express from 'express';
-import { MongoClient, ObjectId } from 'mongodb';
-import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-// --- ES MODULE SETUP FOR __dirname ---
-// This ensures path resolution works correctly in ES Module scope.
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// -------------------------------------
+const express = require('express');
+const { MongoClient, ObjectId } = require('mongodb');
+const cors = require('cors');
+const path = require('path'); 
 
 // Create an Express app
 const app = express();
 
 // --- Configuration ---
-// MONGODB_URI is pulled from your local .env file
+// MONGODB_URI is provided by Vercel Environment Variables
 const MONGODB_URI = process.env.MONGODB_URI;
-const PORT = process.env.PORT || 3000;
 
 let db;
 
 // Middleware
-app.use(cors()); // Allow cross-origin requests
-app.use(express.json()); // Parse JSON bodies
-
-// --- Serve static files (index.html) ---
-// Correctly serves files from the parent directory (project root)
-const staticPath = path.join(__dirname, '..'); 
-app.use(express.static(staticPath));
+app.use(cors()); 
+app.use(express.json()); 
 
 // Function to connect to MongoDB
 async function connectToDb() {
     if (db) return db;
     if (!MONGODB_URI) {
-        throw new Error("MONGODB_URI is not defined. Check your local .env file.");
+        throw new Error("MONGODB_URI is not defined in Vercel Environment Variables.");
     }
     try {
         const client = new MongoClient(MONGODB_URI);
         await client.connect();
-        // Set DB name to 'physio'
         db = client.db("physio"); 
         console.log("Connected to MongoDB!");
         return db;
@@ -63,7 +50,7 @@ app.get('/api/recent-analysis', async (req, res) => {
     try {
         const db = await connectToDb();
         
-        // Filter: Fetch only documents that have the 'totalChunks' field defined (session headers).
+        // Filter: Fetch only documents that have the 'totalChunks' field defined (i.e., the session headers).
         const filter = { totalChunks: { $exists: true } };
 
         const angles = await db.collection('angles')
@@ -97,27 +84,23 @@ app.get('/api/data-chunks', async (req, res) => {
     if (!sessionId || !collectionName) {
         return res.status(400).json({ error: "Missing sessionId or collection parameter." });
     }
-
     if (collectionName !== 'angles' && collectionName !== 'pose') {
         return res.status(400).json({ error: "Invalid collection specified." });
     }
 
     try {
         const db = await connectToDb();
-        // Determine which data field to project based on the collection name
         const dataFieldName = (collectionName === 'angles') ? 'angle_data_text' : 'vicon_data_text';
 
         // Find all chunks belonging to the sessionId
         const chunks = await db.collection(collectionName)
             .find({ sessionId: sessionId })
-            // Project only the necessary fields
             .project({ [dataFieldName]: 1, index: 1, _id: 0 }) 
             .sort({ index: 1 })
             .toArray();
 
         // Map the result to include the data field as a generic 'data' property
         const mappedChunks = chunks
-            // Filter out the metadata header document if it was accidentally included
             .filter(chunk => chunk[dataFieldName] !== null) 
             .map(chunk => ({
                 index: chunk.index,
@@ -133,18 +116,13 @@ app.get('/api/data-chunks', async (req, res) => {
 });
 
 
-// --- Handle root route ---
+// --- Handle root route (Serves the frontend bundle) ---
 app.get('/', (req, res) => {
+    // Uses standard __dirname and path to find index.html in the root directory
+    const staticPath = path.join(__dirname, '..', '..');
     res.sendFile(path.join(staticPath, 'index.html'));
 });
 
 
-// --- START THE LOCAL SERVER ---
-app.listen(PORT, () => {
-    console.log(`Server running locally on http://localhost:${PORT}`);
-    console.log(`Metadata API: http://localhost:${PORT}/api/recent-analysis`);
-});
-
-
-// LOCAL DEV EXPORT (ES Module syntax)
-export default app;
+// VERCEL REQUIRED EXPORT
+module.exports = app;
