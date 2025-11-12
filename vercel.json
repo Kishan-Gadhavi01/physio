@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs18.x",
+      "memory": 1024
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
+}
