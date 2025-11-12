@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Plot from 'react-plotly.js';
 
+const ANALYSIS_API_URL = import.meta.env.VITE_ANALYSIS_API_URL;
 const API_BASE_URL = ''; // same origin on Vercel
 const INTERNAL_API_URL = '/api/recent-analysis';
 const CHUNK_API_URL = (sessionId, collection) =>
