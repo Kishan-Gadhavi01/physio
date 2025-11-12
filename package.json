@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "backend-simple": "node api/index.cjs",
-    "start": "node api/index.js"
+    "start": "node api/index.cjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
