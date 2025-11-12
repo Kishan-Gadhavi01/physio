@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "api/index.cjs",
   "scripts": {
-    "dev": "concurrently \"npm run backend-simple\" \"vite --host\"",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "backend-simple": "node api/index.cjs",
     "start": "node api/index.cjs"
   },
   "dependencies": {
