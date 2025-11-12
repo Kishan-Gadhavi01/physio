@@ -1,17 +1,6 @@
 {
   "version": 2,
   "builds": [
-    { 
-      "src": "api/index.js", 
-      "use": "@vercel/node" 
-    },
-    { 
-      "src": "package.json", 
-      "use": "@vercel/static-build", 
-      "config": { 
-        "outputDirectory": "dist" 
-      }
-    }
   ],
   "routes": [
     {
@@ -19,8 +8,16 @@
       "dest": "api/index.js"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/dist/assets/$1"
+    },
+    {
+      "src": "/vite.svg",
+      "dest": "/dist/vite.svg"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/dist/index.html"
     }
   ]
 }
