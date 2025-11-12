@@ -46,7 +46,7 @@ const formatResult = (doc) => ({
 
 
 // --- 1. Fetch Metadata (Dropdown List) Endpoint ---
-app.get('/api/recent-analysis', async (req, res) => {
+app.get('/recent-analysis', async (req, res) => {
     try {
         const db = await connectToDb();
         
