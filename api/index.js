@@ -77,7 +77,7 @@ app.get('/recent-analysis', async (req, res) => {
 
 
 // --- 2. Fetch Data Chunks Endpoint ---
-app.get('data-chunks', async (req, res) => {
+app.get('/data-chunks', async (req, res) => {
     const { session: sessionId, collection: collectionName } = req.query;
     
     if (!sessionId || !collectionName) {
