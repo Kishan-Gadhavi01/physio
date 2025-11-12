@@ -2,8 +2,9 @@
   "name": "physio",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "main": "api/index.js",
+
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
