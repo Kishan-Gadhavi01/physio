@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Plot from 'react-plotly.js';
 
-// --- ABSOLUTE URL DEFINITION ---
-const LOCAL_API_HOST = 'http://localhost:3000'; 
-
-// API endpoints
-const INTERNAL_API_URL = LOCAL_API_HOST + '/api/recent-analysis';
-const CHUNK_API_URL = (sessionId, collection) => LOCAL_API_HOST + `/api/data-chunks?session=${sessionId}&collection=${collection}`; 
-const ANALYSIS_API_URL = "http://3.232.209.122/analyze-session/";
+const API_BASE_URL = ''; // same origin on Vercel
+const INTERNAL_API_URL = '/api/recent-analysis';
+const CHUNK_API_URL = (sessionId, collection) =>
+  `/api/data-chunks?session=${sessionId}&collection=${collection}`;
 
 // --- NEW FUNCTION: Fetch and reassemble data chunks ---
 const fetchAndReassembleChunks = async (sessionId, collectionName) => {

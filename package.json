@@ -24,6 +24,7 @@
     "react-dom": "^19.1.1",
     "react-plotly.js": "^2.6.0",
     "recharts": "^3.3.0",
+    "serverless-http": "^4.0.0",
     "three": "^0.180.0"
   },
   "devDependencies": {
