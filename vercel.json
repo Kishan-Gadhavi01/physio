@@ -1,12 +1,18 @@
 {
-  "rewrites": [
+  "functions": {
+    "api/index.cjs": {
+      "runtime": "nodejs20.x",
+      "memory": 1024
+    }
+  },
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.cjs"
+      "src": "/api/(.*)",
+      "dest": "/api/index.cjs"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
