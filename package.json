@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "backend-simple": "node api/index.js",
+    "backend-simple": "node api/index.cjs",
     "start": "node api/index.js"
   },
   "dependencies": {
