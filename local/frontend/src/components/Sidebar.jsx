@@ -38,7 +38,7 @@ function Sidebar({ dashboards, activeDashboard, setActiveDashboard }) {
         <div className="user-profile">
             <div className="user-avatar">PJ</div>
             <div className="user-info">
-                <span className="user-name">Peggy J.</span>
+                <span className="user-name">Kishan M.</span>
                 <span className="user-role">Physio User</span>
             </div>
         </div>
