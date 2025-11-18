@@ -1,0 +1,13 @@
+/* src/pages/Home.css */
+.home-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #f7fafc;
+}
+
+.workspace {
+  flex-grow: 1;
+  overflow: auto; /* Allows content within the workspace to scroll if needed */
+  padding: 24px;
+}

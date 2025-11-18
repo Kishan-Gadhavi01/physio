@@ -1,0 +1,87 @@
+/* src/components/StaticDashboard.css */
+.static-dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: black;
+  
+}
+
+.static-dashboard-header {
+  flex-shrink: 0;
+}
+.static-dashboard-header h1 {
+  --text-dark: #2d3748;
+
+  font-size: 2em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 16px;
+  
+}
+
+.static-session-selector {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.static-session-id-display {
+  font-size: 1em;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: black;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.static-upload-button {
+  padding: 10px 15px;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.static-content-grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  min-height: 0;
+}
+
+.static-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.static-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 1em;
+  font-weight: 600;
+  color: #a0aec0;
+}
+
+.static-charts-container {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.static-placeholder {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a0aec0;
+  text-align: center;
+  width: 100%;
+}

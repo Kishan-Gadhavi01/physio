@@ -1,0 +1,13 @@
+/* src/components/KinematicsGraphs.css */
+.charts-container {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.charts-column h4 {
+  margin: 0 0 8px 0;
+  font-size: 1em;
+  font-weight: 600;
+  color: #a0aec0;
+}

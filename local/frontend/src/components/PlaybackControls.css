@@ -1,0 +1,47 @@
+/* src/components/PlaybackControls.css */
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.play-button, .clear-button {
+  flex-grow: 1;
+  padding: 12px;
+  font-size: 1em;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.play-button {
+  background-color: #2d3748;
+  color: white;
+}
+.play-button:hover {
+  background-color: #1a202c;
+}
+
+.clear-button {
+  background-color: #718096; /* Muted gray */
+  color: white;
+}
+.clear-button:hover {
+  background-color: #4a5568;
+}
+
+
+.timeline-slider {
+  width: 100%;
+  accent-color: #4299e1;
+}
+
+.frame-counter {
+  text-align: right;
+  font-size: 0.8em;
+  color: #a0aec0;
+}
+
