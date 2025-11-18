@@ -216,6 +216,11 @@ http://localhost:5173
 ---
 
 # 📈 Outputs & Features
+### 🔹 Live 3D Pose Tracking
+![3D Pose](./assets/3d.png)
+
+### 🔹 Physiotherapy Analytics Dashboard
+![Dashboard](./assets/dashboard.png)
 
 * Live 3D skeleton (17 keypoints → 23 biomechanical angles)
 * Exercise classification timeline
