@@ -216,15 +216,73 @@ http://localhost:5173
 ---
 
 # 📈 Outputs & Features
-### 🔹 Live 3D Pose Tracking
-![3D Pose](./assets/3d.png)
 
-### 🔹 Physiotherapy Analytics Dashboard
-![Dashboard](./assets/dashboard.png)
+A polished, easy-to-read presentation of what PhysioTrack delivers to clinicians and users.
 
-* Live 3D skeleton (17 keypoints → 23 biomechanical angles)
-* Exercise classification timeline
-* Rep detection & peak visualization
-* Time‑series angle plots
-* Downloadable session results
+---
 
+## 🎥 Live 3D Pose Tracking
+
+<div align="center">
+  <img src="./images/1.png" width="75%" style="border-radius: 8px;" />
+</div>
+
+**Features:**
+
+- Accurate 3D human pose reconstructed from a standard webcam  
+- Mapped into a **23-angle biomechanical model**  
+- Real-time updates with WebSockets  
+
+---
+
+## 📊 Physiotherapy Analytics Dashboard
+
+<div align="center">
+  <img src="./images/2.png" width="75%" style="border-radius: 8px;" />
+  <br/><br/>
+  <img src="./images/3.png" width="75%" style="border-radius: 8px;" />
+</div>
+
+**What the dashboard shows:**
+
+- Live joint-angle tracking  
+- Range-of-motion (ROM) visualization  
+- Smooth, filtered biomechanical curves  
+- Movement-quality insights  
+
+---
+
+## 🧠 Exercise Classification Timeline
+
+<div align="center">
+  <img src="./images/4.png" width="75%" style="border-radius: 8px;" />
+</div>
+
+**Highlights:**
+
+- LSTM-based exercise identification  
+- Automatic segmentation of activity over time  
+- Clinically useful timeline visualization  
+
+---
+
+## 🔁 Repetition Detection & Peak Visualization
+
+<div align="center">
+  <img src="./images/5.png" width="75%" style="border-radius: 8px;" />
+</div>
+
+**Provides:**
+
+- AI-based repetition counting  
+- Peak detection with visual markers  
+- Insight into movement consistency and quality  
+
+---
+
+## 📈 Additional Analysis Features
+
+- Full time-series kinematic analysis  
+- Clean ROM and angle-trend graphs  
+- Ability to export/download session results  
+- Useful for rehabilitation tracking over multiple sessions  
